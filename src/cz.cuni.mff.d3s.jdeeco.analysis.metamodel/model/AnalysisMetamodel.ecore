@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="analysismetamodel" nsURI="http://cz.cuni.mff.d3s.jdeeco.analysis.model.metamodel/1.0"
+    nsPrefix="cz.cuni.mff.d3s.jdeeco.analysis.model.metamodel">
+  <eClassifiers xsi:type="ecore:EClass" name="Component">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ComponentProcesses" upperBound="-1"
+        eType="#//ComponentProcess" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Knowledges" upperBound="-1"
+        eType="#//Knowledge" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentProcess" eSuperTypes="#//Task">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Component" lowerBound="1"
+        eType="#//Component"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="InvocablesByEQSet" upperBound="-1"
+        eType="#//ProcessInvocableByEQSet" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="InvocablesByCustomFunc"
+        upperBound="-1" eType="#//ProcessInvocableByCustomFunc" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericKnowledge" eSuperTypes="#//Knowledge">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComponentInstance">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Component" lowerBound="1"
+        eType="#//Component"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StaticEnsemble" eSuperTypes="#//Task">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Coordinator" lowerBound="1"
+        eType="#//ComponentInstance"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Member" lowerBound="1"
+        eType="#//ComponentInstance"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="InvocablesByEQSet" lowerBound="1"
+        upperBound="-1" eType="#//EnsembleInvocableByEQSet" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="InvocablesByCustomFunc"
+        upperBound="-1" eType="#//EnsembleInvocableByCustomFunc" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Task" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Period" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Deadline" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UpperBoundTable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Rows" lowerBound="1" upperBound="-1"
+        eType="#//TableRow" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TableRow">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Derivative" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TableOfDerivatives">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="UpperBoundTable" lowerBound="1"
+        eType="#//UpperBoundTable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ValuesMultiplier" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="LowerBoundTable" lowerBound="1"
+        eType="#//LowerBoundTable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="DerivativesMutliplier"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Components" upperBound="-1"
+        eType="#//Component" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="StaticEnsembles" upperBound="-1"
+        eType="#//StaticEnsemble" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ComponentInstances" upperBound="-1"
+        eType="#//ComponentInstance" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="BeliefPropagationDelay"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="CustomIntervals" upperBound="-1"
+        eType="#//CustomInterval" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="CustomGenerators" upperBound="-1"
+        eType="#//CustomGenerator" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Alerts" upperBound="-1"
+        eType="#//Alert" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="TablesOfDerivatives" upperBound="-1"
+        eType="#//TableOfDerivatives" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DefaultValue" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ComponentInstance" eType="#//ComponentInstance"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DefaultValueByEnumeration" eSuperTypes="#//DefaultValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Value" lowerBound="1" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DefaultValueByGenerator" eSuperTypes="#//DefaultValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Start" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="End" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Count" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Generator" lowerBound="1"
+        eType="#//CustomGenerator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CustomInterval">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="WrappedType" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Clazz" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CustomGenerator">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="GeneratedType" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Clazz" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Alert">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Knowledge" lowerBound="1"
+        eType="#//Knowledge"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NumericKnowledgeBinding">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Knowledge" lowerBound="1"
+        eType="#//NumericKnowledge"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="EnsembleSide" eType="#//EnsembleSide"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LowerBoundTable">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Rows" lowerBound="1" upperBound="-1"
+        eType="#//TableRow" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnsembleInvocableByEQSet">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="InputKnowledgeBindings"
+        upperBound="-1" eType="#//NumericKnowledgeBinding" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="OutputKnowledgeBinding"
+        lowerBound="1" eType="#//NumericKnowledgeBinding" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="DoCartesianProduct" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NumericKnowledge" eSuperTypes="#//Knowledge">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Multiplier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="TableOfDerivatives" eType="#//TableOfDerivatives"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Precision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EnsembleSide">
+    <eLiterals name="Member"/>
+    <eLiterals name="Coordinator" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessInvocableByEQSet">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="InputKnowledges" upperBound="-1"
+        eType="#//NumericKnowledge"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="OutputKnowledge" lowerBound="1"
+        eType="#//NumericKnowledge"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="DoCartesianProduct" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessInvocableByCustomFunc">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="InputKnowledges" upperBound="-1"
+        eType="#//Knowledge"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="OutputKnowledge" lowerBound="1"
+        eType="#//Knowledge"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="DoCartesianProduct" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Knowledge" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="IsPivot" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ShowPivot" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="DefaultValues" upperBound="-1"
+        eType="#//DefaultValue" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="KnowledgeBinding">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="EnsembleSide" lowerBound="1"
+        eType="#//EnsembleSide"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Knowledge" lowerBound="1"
+        eType="#//Knowledge"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnsembleInvocableByCustomFunc">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="OutputKnowledgeBinding"
+        lowerBound="1" eType="#//KnowledgeBinding" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="InputKnowledgeBindings"
+        upperBound="-1" eType="#//KnowledgeBinding"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="DoCartesianProduct" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+</ecore:EPackage>

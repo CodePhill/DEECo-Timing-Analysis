@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Analysis
+Bundle-SymbolicName: cz.cuni.mff.d3s.jdeeco.analysis
+Bundle-Version: 1.0.0.qualifier
+Export-Package: cz.cuni.mff.d3s.deeco.analysis.core,
+ cz.cuni.mff.d3s.deeco.analysis.def,
+ cz.cuni.mff.d3s.deeco.analysis.entities,
+ cz.cuni.mff.d3s.deeco.analysis.generators,
+ cz.cuni.mff.d3s.deeco.analysis.output
+Bundle-ClassPath: .
+Import-Package: 

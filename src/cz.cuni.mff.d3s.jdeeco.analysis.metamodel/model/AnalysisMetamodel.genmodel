@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/cz.cuni.mff.d3s.jdeeco.analysis.metamodel/src-gen"
+    editorDirectory="/cz.cuni.mff.d3s.jdeeco.analysis.metamodel.editor/src" modelPluginID="cz.cuni.mff.d3s.jdeeco.analysis.metamodel"
+    modelName="AnalysisMetamodel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    editPluginID="cz.cuni.mff.d3s.jdeeco.analysis.metamodel.edit" editorPluginID="cz.cuni.mff.d3s.jdeeco.analysis.metamodel.editor"
+    operationReflection="true" importOrganizing="true" pluginKey="AnalysisMetamodel">
+  <foreignModel>../../cz.cuni.mff.d3s.jdeeco.analysis.model/model/AnalysisMetamodel.ecore</foreignModel>
+  <genPackages prefix="Analysismetamodel" disposableProviderFactory="true" ecorePackage="AnalysisMetamodel.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="AnalysisMetamodel.ecore#//EnsembleSide">
+      <genEnumLiterals ecoreEnumLiteral="AnalysisMetamodel.ecore#//EnsembleSide/Member"/>
+      <genEnumLiterals ecoreEnumLiteral="AnalysisMetamodel.ecore#//EnsembleSide/Coordinator"/>
+    </genEnums>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//Component">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//Component/ComponentProcesses"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//Component/Name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//Component/Knowledges"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//ComponentProcess">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//ComponentProcess/Name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//ComponentProcess/Component"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//ComponentProcess/InvocablesByEQSet"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//ComponentProcess/InvocablesByCustomFunc"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//GenericKnowledge">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//GenericKnowledge/Type"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//ComponentInstance">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//ComponentInstance/Name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//ComponentInstance/Component"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//StaticEnsemble">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//StaticEnsemble/Coordinator"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//StaticEnsemble/Member"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//StaticEnsemble/Name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//StaticEnsemble/InvocablesByEQSet"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//StaticEnsemble/InvocablesByCustomFunc"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="AnalysisMetamodel.ecore#//Task">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//Task/Period"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//Task/Deadline"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//UpperBoundTable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//UpperBoundTable/Rows"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//TableRow">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//TableRow/Value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//TableRow/Derivative"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//TableOfDerivatives">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//TableOfDerivatives/UpperBoundTable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//TableOfDerivatives/Name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//TableOfDerivatives/ValuesMultiplier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//TableOfDerivatives/LowerBoundTable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//TableOfDerivatives/DerivativesMutliplier"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//Model/Components"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//Model/StaticEnsembles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//Model/ComponentInstances"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//Model/BeliefPropagationDelay"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//Model/CustomIntervals"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//Model/CustomGenerators"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//Model/Alerts"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//Model/TablesOfDerivatives"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="AnalysisMetamodel.ecore#//DefaultValue">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//DefaultValue/ComponentInstance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//DefaultValue/IsForced"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//DefaultValueByEnumeration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//DefaultValueByEnumeration/Value"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//DefaultValueByGenerator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//DefaultValueByGenerator/Start"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//DefaultValueByGenerator/End"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//DefaultValueByGenerator/Count"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//DefaultValueByGenerator/Generator"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//CustomInterval">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//CustomInterval/WrappedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//CustomInterval/Clazz"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//CustomGenerator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//CustomGenerator/GeneratedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//CustomGenerator/Clazz"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//Alert">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//Alert/Name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//Alert/Knowledge"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//NumericKnowledgeBinding">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//NumericKnowledgeBinding/Knowledge"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//NumericKnowledgeBinding/EnsembleSide"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//LowerBoundTable">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//LowerBoundTable/Rows"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//EnsembleInvocableByEQSet">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//EnsembleInvocableByEQSet/InputKnowledgeBindings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//EnsembleInvocableByEQSet/OutputKnowledgeBinding"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//NumericKnowledge">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//NumericKnowledge/Multiplier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//NumericKnowledge/TableOfDerivatives"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//NumericKnowledge/Precision"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//ProcessInvocableByEQSet">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//ProcessInvocableByEQSet/InputKnowledges"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//ProcessInvocableByEQSet/OutputKnowledge"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//ProcessInvocableByCustomFunc">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//ProcessInvocableByCustomFunc/InputKnowledges"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//ProcessInvocableByCustomFunc/OutputKnowledge"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="AnalysisMetamodel.ecore#//Knowledge">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//Knowledge/Name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//Knowledge/IsPivot"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//Knowledge/ShowPivot"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//Knowledge/DefaultValues"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//Knowledge/Component"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//KnowledgeBinding">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AnalysisMetamodel.ecore#//KnowledgeBinding/EnsembleSide"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//KnowledgeBinding/Knowledge"/>
+    </genClasses>
+    <genClasses ecoreClass="AnalysisMetamodel.ecore#//EnsembleInvocableByCustomFunc">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//EnsembleInvocableByCustomFunc/OutputKnowledgeBinding"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AnalysisMetamodel.ecore#//EnsembleInvocableByCustomFunc/InputKnowledgeBindings"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

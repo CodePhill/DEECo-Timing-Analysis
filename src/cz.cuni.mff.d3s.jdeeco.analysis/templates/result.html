@@ -1,0 +1,346 @@
+<html>
+	<head>
+		<style>
+			body {
+				font-family: Arial;
+			}	
+			h3 { 
+				margin-bottom: 5px;
+			}
+			th { 
+				text-align: left; 
+			}
+			td {
+				vertical-align:top;
+			}	
+			a {
+				color: #000099;
+			}
+			a:visited {
+				color: #000099;
+			}
+			.left-indent { 
+				margin-left:15px;
+			}
+			
+			.nicetable { 
+				border-collapse: collapse;
+				border-style: hidden;
+			}
+			.nicetable tr { 
+				border: none;
+			}
+			.nicetable td {
+				padding-left: 5px;
+				padding-right: 5px;
+				border-left:  solid 1px #000;
+				border-right: solid 1px #000; 
+			}			
+		</style>
+		<script>
+			function toggleVisibility(id) {
+				obj = document.getElementById(id);
+				lbl = document.getElementById(id + "_label");
+				if (obj.style.display == 'none') {
+					obj.style.display = 'inline';
+					lbl.style.display = 'none';
+				} else {
+					obj.style.display = 'none';
+					lbl.style.display = 'inline';
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h2>General settings</h2>
+		<div class="left-indent">
+			<div>Belief propagation delay = ${configBeliefPropagationDelay} </div>
+			<br>
+			<div>Run values evaluation = ${configRunValuesEvaluation?c} </div>
+		</div>
+		
+		<h2>Components definitions</h2>
+		<div class="left-indent">
+		
+		  <#list componentsDefs as componentDef>
+			<h2>${componentDef.name}</h2>
+			<div class="left-indent">
+				
+				<h3>Knowledge Fields</h3>
+				<table style="width:800px">
+					<tr>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Multiplier</th>
+						<th>Table of derivatives</th>
+					</tr>						
+				  <#list componentDef.knowledgeFieldsDefinitions as field>
+					<tr>
+						<td id="fieldDef_${field.name}">${field.name}</td>
+						<td>${field.type}</td>
+						<td>
+							<#if field.multiplier??>
+								${field.multiplier}
+							<#else>
+								-
+							</#if>
+						</td>
+						<td valign="top">
+							<#if field.upperTable??>
+								<a href="javascript:toggleVisibility('table_${field.name}')" id = "table_${field.name}_label">Show table of derivatives</a>
+								<table id='table_${field.name}' style="display:none">
+									<tr>
+										<td colspan="3">
+											<a href="javascript:toggleVisibility('table_${field.name}')">Hide the table</a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<table>
+												<tr>
+													<th colspan="2">Upper bound table</th>
+											  	</tr>
+												<tr>
+												    <td>
+														Value
+												    </td>
+												    <td>
+														Derivative
+												    </td>
+												</tr>
+											  <#list field.upperTable as values>
+												<tr>
+													<td>
+														${values[0]}
+													</td>
+													<td>
+														${values[1]}
+													</td>
+												</tr>
+											  </#list>
+											</table>
+										</td>						
+										<td>
+											<table>
+												<tr>
+													<th colspan="2">Lower bound table</th>
+											  	</tr>
+												<tr>
+												    <td>
+														Value
+												    </td>
+												    <td>
+														Derivative
+												    </td>
+												</tr>
+											  <#list field.lowerTable as values>
+												<tr>
+													<td>
+														${values[0]}
+													</td>
+													<td>
+														${values[1]}
+													</td>
+												</tr>
+											  </#list>
+											</table>
+										</td>
+										<td>
+											<table>
+												<tr>
+													<th colspan="2">Table multipliers</th>
+											  	</tr>
+												<tr>
+												    <td>
+														Values multiplier: <br>
+												    	<#if field.valuesMultiplier??>
+												    		${field.valuesMultiplier}
+												    	<#else>
+												    		not set
+												    	</#if>
+												    </td>
+												</tr>
+												<tr>
+												    <td>
+														Derivatives multiplier: <br>
+														<#if field.derivativesMultiplier??>
+												    		${field.derivativesMultiplier}
+												    	<#else>
+												    		not set
+												    	</#if>
+												    </td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							<#else>
+								none						
+							</#if>
+						</td>
+					</tr>
+				  </#list>
+				</table>
+					 
+			  <#list componentDef.processDefinitions as process>
+			  	<h3>Process: ${process.name}</h3>
+				<div class="left-indent">
+					<div>Period / deadline: ${process.period} / ${process.deadline}</div>
+					<br>
+					<table width="800px;">
+						<tr>						
+							<th>Wrapper class</th>
+							<th>Delay</th>
+							<th>OUT</th>
+							<th> </th>
+							<th>IN</th>
+						</tr>
+					  <#list process.wrappers as wrapper>		
+						<tr>
+							<td>
+								<span>${wrapper.name}</span>
+							</td>
+							<td>
+								${wrapper.delay}
+							</td>
+							<td>
+								<a href="#fieldDef_${wrapper.outField}">${wrapper.outField}</a> 
+							</td>
+							<td>
+								<-
+							</td>
+							<td>
+							  <#list wrapper.inFields as inField>
+								<a href="#fieldDef_${inField}">${inField}</a><#if inField_has_next>, </#if>
+			  	  			  </#list>
+							</td>
+						</tr>
+					  </#list>	
+					</table>
+			  	</div>
+			  </#list>
+			</div>
+		  </#list>
+			
+		</div>
+		<hr/>
+		
+		<h2>Static ensembles definitions</h2>
+		<div class="left-indent">				
+		<#list staticEnsemblesDefinitions as ensemble>
+		  	<h3>Ensemble: ${ensemble.name}</h3>
+			<div class="left-indent">
+				<div>Period / deadline: ${ensemble.period} / ${ensemble.deadline}</div>
+				<div>Coordinator / member: ${ensemble.coordinator} / ${ensemble.member}</div>
+				<br>
+				<table width="800px;">
+					<tr>						
+						<th>Wrapper class</th>
+						<th>Delay</th>
+						<th>OUT</th>
+						<th> </th>
+						<th>IN</th>
+					</tr>
+				  <#list ensemble.wrappers as wrapper>		
+					<tr>
+						<td>
+							<span>${wrapper.name}</span>
+						</td>
+						<td>
+							${wrapper.delay}
+						</td>
+						<td>
+							<a href="#fieldDef_${wrapper.outField}">${wrapper.outField}</a> 
+						</td>
+						<td>
+							<-
+						</td>
+						<td>
+						  <#list wrapper.inFields as inField>
+							<a href="#fieldDef_${inField}">${inField}</a><#if inField_has_next>, </#if>
+		  	  			  </#list>
+						</td>
+					</tr>
+				  </#list>	
+				</table>
+		  	</div>
+		  </#list>
+		</div>
+		<hr/>
+		
+		<h2>Runtime analysis results</h2>
+		
+		<div class="left-indent">
+			
+			<h3>Alerts</h2>
+			<div style="color:red">
+			  <#list firedAlerts as alert>
+				Alert: ${alert.name} for values: ${alert.upperBound} ${alert.lowerBound} <br>
+			  </#list>
+			</div>
+			
+		  <#list componentsInstances as component>
+			<h3>${component.instanceName} (instance of ${component.name})</h2>
+			<div class="left-indent">
+				<table style="width:800px">
+					<tr>
+						<th>Knowledge Field</th>
+						<th>Delay</th>
+						<th>Values</th>
+					</tr>
+					
+				  <#list component.knowledgeFieldsAffections as fieldAffection>
+					<tr>
+						<td>
+							<a href="#fieldDef_${fieldAffection.name}" id="fieldUse_${component.instanceName}_${fieldAffection.name}">
+								${fieldAffection.name}
+							</a>
+						</td>
+						<td>${fieldAffection.delay}</td>
+						<td>
+						  <#if fieldAffection.values?has_content>
+							<table class="nicetable">
+								<tr>
+								  <#list fieldAffection.dimensions as dimension>
+									<td colspan="2" style="text-align:center;border-right:1px solid #000;">
+										<a href="#fieldUse_${dimension.component}_${dimension.field}" >${dimension.component}<br>${dimension.field}</a>
+									</td>
+								  </#list>
+								  <#if fieldAffection.dimensions?has_content>
+									<td colspan="2" style="text-align:center">Value</td>
+								  </#if>
+								</tr>
+								<tr>
+								  <#list fieldAffection.dimensions as dimensionName>
+								  	<td>Upper</td>
+									<td>Lower</td>
+								  </#list>
+									<td>Upper</td>
+									<td>Lower</td>
+								</tr>
+									${fieldAffection.values}
+								</tr>
+							</table>
+						  <#else>
+						  	-
+						  </#if>
+						</td>
+					</tr>
+				  </#list>
+					
+				</table>
+				
+			</div>
+		  </#list>
+		  
+		  <hr/>
+		  
+		  <p>
+			<div>
+				Generated on ${.now} <br>
+				Analysis took ${duration} seconds
+			</div>
+		  </p>
+		</div>	
+	</body>
+</html>

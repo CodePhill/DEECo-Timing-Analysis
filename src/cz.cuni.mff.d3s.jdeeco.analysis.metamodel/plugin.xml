@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated AnalysisMetamodel -->
+      <package
+            uri="http://cz.cuni.mff.d3s.jdeeco.analysis.model.metamodel/1.0"
+            class="analysismetamodel.AnalysismetamodelPackage"
+            genModel="model/AnalysisMetamodel.genmodel"/>
+   </extension>
+
+</plugin>
